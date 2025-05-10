@@ -4,7 +4,7 @@ This project deploys a **Linux VM Scale Set** on Azure with full monitoring and 
 
 ---
 
-![UI](/screenshots/flame_port.png)
+![UI](/screenshots/Flame_port.png)
 ![dashboard](/screenshots/azure_dashboard_flame.png)
 ## 🧱 Architecture Overview
 
