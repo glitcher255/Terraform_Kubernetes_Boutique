@@ -70,8 +70,9 @@ NGINX routes root traffic to Flame (no exposed port 5005). Flame UI includes:
 
 1. Clone repo  
 2. Configure Terraform backend and variables
-3. Run GitHub Actions (or `terraform apply`)
-4. Access Flame via public IP (HTTP, port 80)
+3. Configure TF_TOKEN_app_terraform_io with your TF Auth Key
+4. Run GitHub Actions (or `terraform apply`)
+5. Access Flame via public IP (HTTP, port 80)
 
 ---
 
