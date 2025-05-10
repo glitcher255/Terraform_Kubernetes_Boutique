@@ -1,0 +1,40 @@
+name: Terraform CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+jobs:
+  terraform:
+    name: 'Terraform Plan'
+    runs-on: ubuntu-latest
+    env:
+      #How GitHub auths with Terraform cloud used in "provider.tf" # Address is app.terraform.io becomes app_terraform.io. (must be prefixed with "TF_TOKEN_")
+      ##########################################################################
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_TOKEN_app_terraform_io }}
+      ##########################################################################
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+        #Workaround not having to upload id_rsa.pub file to GitHub, stores it in GitHub secrets instead, see vm_main.tf
+      - name: Prepare SSH key
+        run: |
+          echo "${{ secrets.SSH_PUBLIC_KEY }}" > id_rsa.pub
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve

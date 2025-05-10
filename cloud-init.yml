@@ -1,0 +1,38 @@
+#cloud-config
+package_upgrade: true
+packages:
+  # - azuremonitoragent
+  - nginx
+  - npm
+  - docker.io
+runcmd:
+  # - azmonagent --version  # optional: verify installation
+  # - systemctl restart azuremonitoragent
+  # - systemctl enable azuremonitoragent
+
+  - systemctl enable nginx
+  - systemctl start nginx
+  - systemctl restart nginx
+  
+  - systemctl start docker
+  - systemctl enable docker
+  - docker pull pawelmalak/flame
+  - docker run -d -p 5005:5005 --name flame pawelmalak/flame
+
+  - |
+    cat <<EOF > /etc/nginx/sites-available/flame
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://localhost:5005;
+            proxy_set_header Host \$host;
+            proxy_set_header X-Real-IP \$remote_addr;
+            proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto \$scheme;
+        }
+    }
+    EOF
+  - ln -s /etc/nginx/sites-available/flame /etc/nginx/sites-enabled/flame
+  - rm /etc/nginx/sites-enabled/default
+  - nginx -t && systemctl reload nginx
