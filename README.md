@@ -78,15 +78,26 @@ NGINX routes root traffic to Flame (no exposed port 5005). Flame UI includes:
 ## 📂 Structure
 
 /modules/
+
 vm/
+
 networking/
+
 monitoring/
+
 dcr/
+
 .github/
+
 workflows/
+
 flame/
+
 docker-compose.yml
+
 nginx.conf
+
 main.tf
+
 outputs.tf
 
