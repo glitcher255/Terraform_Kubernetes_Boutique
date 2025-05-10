@@ -1,15 +1,10 @@
 #cloud-config
 package_upgrade: true
 packages:
-  # - azuremonitoragent
   - nginx
   - npm
   - docker.io
 runcmd:
-  # - azmonagent --version  # optional: verify installation
-  # - systemctl restart azuremonitoragent
-  # - systemctl enable azuremonitoragent
-
   - systemctl enable nginx
   - systemctl start nginx
   - systemctl restart nginx

@@ -43,17 +43,7 @@ identity {
   type = "SystemAssigned"
 }
 }
-# #AMA INSTALL
-# resource "azurerm_virtual_machine_scale_set_extension" "ama" {
-#   name                         = "AzureMonitorLinuxAgent"
-#   virtual_machine_scale_set_id = azurerm_linux_virtual_machine_scale_set.linux_vm.id
-#   publisher                   = "Microsoft.Azure.Monitor"
-#   type                        = "AzureMonitorLinuxAgent"
-#   type_handler_version        = "1.15"
-# #   automatic_upgrade_enabled  = true
-# #   auto_upgrade_minor_version = true
-#   settings                    = "{}"
-# }
+
 
 ////////// AUTO SCALING ///
 resource "azurerm_monitor_autoscale_setting" "autoscale" {
@@ -66,7 +56,7 @@ resource "azurerm_monitor_autoscale_setting" "autoscale" {
     name = "autoscale-profile"
     capacity {
       minimum = 1
-      maximum = 1
+      maximum = 3
       default = 1
     }
     rule {

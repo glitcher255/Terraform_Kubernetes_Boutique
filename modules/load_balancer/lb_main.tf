@@ -1,4 +1,3 @@
-//////////////////// > LOAD BALANCER < ////////////////////////////////
 resource "azurerm_lb" "lb" {
   name                = "load_balancer"
   location            = var.location

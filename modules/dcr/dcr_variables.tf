@@ -13,3 +13,7 @@ variable "vm_id" {
 variable "workspace_id" {
   
 }
+
+variable "nsg_id" {
+  
+}
