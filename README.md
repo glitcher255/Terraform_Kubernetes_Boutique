@@ -74,6 +74,7 @@ NGINX routes root traffic to Flame (no exposed port 5005). Flame UI includes:
 4. Run GitHub Actions (or `terraform apply`)
 5. Access Flame via public IP (HTTP, port 80)
 
+
 ---
 
 ## 📂 Structure

@@ -46,7 +46,7 @@ resource "azurerm_monitor_metric_alert" "high_cpu" {
   enabled = true
 
   criteria {
-    metric_namespace = "Microsoft.Compute/virtualMachines"
+    metric_namespace = "Microsoft.Compute/virtualMachineScaleSets"
     metric_name = "Percentage CPU"
     aggregation = "Average"
     operator = "GreaterThan"
