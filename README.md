@@ -1,4 +1,4 @@
-# 🔥 Flame + Azure VMSS Monitoring Project
+# 🔥 Kubernetes + Grafana
 
 This project deploys a **Linux VM Scale Set** on Azure with full monitoring and a reverse-proxied **Flame dashboard** front-end. It's designed to show production-grade telemetry.
 

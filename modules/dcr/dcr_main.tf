@@ -31,11 +31,11 @@ resource "azurerm_monitor_data_collection_rule" "main" {
 #depends_on = [ the work log space ]
 }
 
-resource "azurerm_monitor_data_collection_rule_association" "vm_assoc" {
-  name                    = "vm_dcr_association"
-  target_resource_id      = var.vm_id
-  data_collection_rule_id = azurerm_monitor_data_collection_rule.main.id
-}
+# resource "azurerm_monitor_data_collection_rule_association" "vm_assoc" {
+#   name                    = "vm_dcr_association"
+#   target_resource_id      = var.vm_id
+#   data_collection_rule_id = azurerm_monitor_data_collection_rule.main.id
+# }
 
 
 #"AzureDiagnostics" logging

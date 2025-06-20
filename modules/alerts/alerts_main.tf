@@ -38,21 +38,21 @@ QUERY
 
 
 //METRIC ALERTS (no AMA)
-resource "azurerm_monitor_metric_alert" "high_cpu" {
-  name = "high_CPU_alert_metric"
-  resource_group_name = var.rg_name
-  severity = 2
-  scopes = [ var.vm_id ]
-  enabled = true
+# resource "azurerm_monitor_metric_alert" "high_cpu" {
+#   name = "high_CPU_alert_metric"
+#   resource_group_name = var.rg_name
+#   severity = 2
+#   scopes = [ var.vm_id ]
+#   enabled = true
 
-  criteria {
-    metric_namespace = "Microsoft.Compute/virtualMachineScaleSets"
-    metric_name = "Percentage CPU"
-    aggregation = "Average"
-    operator = "GreaterThan"
-    threshold = 80
-  }
-  action {
-    action_group_id = azurerm_monitor_action_group.main.id
-  }
-}
+#   criteria {
+#     metric_namespace = "Microsoft.Compute/virtualMachineScaleSets"
+#     metric_name = "Percentage CPU"
+#     aggregation = "Average"
+#     operator = "GreaterThan"
+#     threshold = 80
+#   }
+#   action {
+#     action_group_id = azurerm_monitor_action_group.main.id
+#   }
+# }

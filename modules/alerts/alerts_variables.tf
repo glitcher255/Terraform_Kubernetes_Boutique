@@ -6,9 +6,9 @@ variable "location" {
   
 }
 
-variable "vm_id" {
+# variable "vm_id" {
   
-}
+# }
 
 variable "workspace_id" {
   

@@ -15,8 +15,7 @@ module "vm" {
   location = var.location
   rg_name  = azurerm_resource_group.rg_main.name
   subnet_id       = module.vnet.subnet_id
-  backend_pool_id = module.load_balancer.backend_pool_id
-  depends_on      = [ module.vnet, module.load_balancer ]
+  depends_on      = [ module.vnet]
 }
 
 module "nsg" {
@@ -25,39 +24,4 @@ module "nsg" {
   rg_name  = azurerm_resource_group.rg_main.name
   subnet_id  = module.vnet.subnet_id
   depends_on = [ module.vnet ]
-}
-
-module "monitoring" {
-  source   = "./modules/monitoring"
-  location = var.location
-  rg_name  = azurerm_resource_group.rg_main.name
-  vm_id      = module.vm.vm_id
-  nsg_id     = module.nsg.nsg_id
-  vm_identity = module.vm.vm_identity
-}
-
-module "load_balancer" {
-  source   = "./modules/load_balancer"
-  location = var.location
-  rg_name  = azurerm_resource_group.rg_main.name
-  depends_on = [ module.vnet ]
-}
-
-module "dcr" {
-  source = "./modules/dcr"
-  location = var.location
-  rg_name = azurerm_resource_group.rg_main.name
-  nsg_id = module.nsg.nsg_id
-  vm_id = module.vm.vm_id
-  workspace_id = module.monitoring.workspace_id
-  depends_on = [ module.monitoring, module.vm, module.nsg ]
-}
-
-module "alerts" {
-  source = "./modules/alerts"
-  location = var.location
-  rg_name = azurerm_resource_group.rg_main.name
-  vm_id = module.vm.vm_id
-  workspace_id = module.monitoring.workspace_id
-  depends_on = [ module.monitoring, module.vm ]
 }
