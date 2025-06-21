@@ -12,9 +12,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     max_count           = 1
     type                = "VirtualMachineScaleSets"
     vnet_subnet_id = var.subnet_id
-    os_disk_type    = "StandardHDD"
-    os_disk_size_gb = 30
-
+    os_disk_size_gb  = 30
+    #os_sku = "AzureLinux"
+    #os_disk_type = "Ephemeral" #testing only
   }
     identity {
     type = "SystemAssigned"
