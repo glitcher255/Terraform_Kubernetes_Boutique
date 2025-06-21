@@ -1,0 +1,25 @@
+# az aks get-credentials --resource-group RG_main --name AKS_cluster --overwrite-existing
+
+# helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+# helm repo add grafana https://grafana.github.io/helm-charts
+# helm repo update
+
+# kubectl create ns monitoring
+# kubectl create ns boutique
+
+# helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring --set grafana.adminPassword='admin123' `
+#   --set grafana.service.type=LoadBalancer `
+#   --set prometheus.service.type=LoadBalancer
+
+# helm install loki grafana/loki -n monitoring -f k8s/loki/values.yaml
+
+# helm install tempo grafana/tempo -n monitoring -f k8s/tempo/values.yaml
+
+# #git clone https://github.com/GoogleCloudPlatform/microservices-demo.git (RUN ONLY ONCE)
+# cd  ../microservices-demo/release
+# kubectl apply -f kubernetes-manifests.yaml -n boutique
+# cd ../../Terraform_Kubernetes_Flame
+
+# kubectl apply -f k8s/otel/otel-collector-config.yaml
+# kubectl apply -f k8s/otel/otel-collector-deploy.yaml
+# kubectl apply -f k8s/otel/otel-collector-service.yaml
