@@ -2,6 +2,7 @@
 
 # helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 # helm repo add grafana https://grafana.github.io/helm-charts
+# helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
 # helm repo update
 
 # kubectl create ns monitoring
@@ -9,17 +10,62 @@
 
 # helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring --set grafana.adminPassword='admin123' `
 #   --set grafana.service.type=LoadBalancer `
-#   --set prometheus.service.type=LoadBalancer
+# #  --set prometheus.service.type=LoadBalancer
 
 # helm install loki grafana/loki -n monitoring -f k8s/loki/values.yaml
 
 # helm install tempo grafana/tempo -n monitoring -f k8s/tempo/values.yaml
 
-# #git clone https://github.com/GoogleCloudPlatform/microservices-demo.git (RUN ONLY ONCE)
-# cd  ../microservices-demo/release
-# kubectl apply -f kubernetes-manifests.yaml -n boutique
-# cd ../../Terraform_Kubernetes_Flame
+# helm install otel-collector open-telemetry/opentelemetry-collector -f k8s/otel/values.yaml
 
-# kubectl apply -f k8s/otel/otel-collector-config.yaml
-# kubectl apply -f k8s/otel/otel-collector-deploy.yaml
-# kubectl apply -f k8s/otel/otel-collector-service.yaml
+# cd ../google_boutique/
+# #git clone https://github.com/GoogleCloudPlatform/microservices-demo.git (RUN ONLY ONCE)
+# kubectl apply -f kubernetes-manifests.yaml -n boutique
+# cd ../Terraform_Kubernetes_Flame
+
+
+
+# #cd ../google_boutique/microservices-demo/release
+# #kubectl apply -f k8s/otel/otel-collector-config.yaml
+# #kubectl apply -f k8s/otel/otel-collector-deploy.yaml
+# #kubectl apply -f k8s/otel/otel-collector-service.yaml
+# #cd ../../../Terraform_Kubernetes_Flame
+
+
+# ********************
+# ********************
+# testing
+# kubectl get svc -n monitoring
+# kubectl get svc --all-namespaces --field-selector spec.type=LoadBalancer
+# helm list -n monitoring
+
+
+# troubleshooting
+# kubectl get pods -n monitoring
+# kubectl exec -it POD -n monitoring -- /bin/sh
+# curl -v http://name:3100/ready
+# curl -v http://name.monitoring.svc.cluster.local:3100/ready
+# kubectl logs
+# kubectl describe
+# *******
+# full nuke
+# kubectl delete ns monitoring boutique
+# *******
+
+
+
+
+# ? for google
+# kubectl get svc frontend-external -n boutique
+
+
+
+# traces are working when
+# kubectl port-forward svc/tempo 4318:4318 -n monitoring
+# otel-cli span `
+#   --name "local-span" `
+#   --service "trace-generator" `
+#   --endpoint "http://localhost:4318/v1/traces" `
+#   --verbose
+
+# BUT, I want boutique to generate them

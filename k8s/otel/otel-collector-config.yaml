@@ -8,14 +8,14 @@ data:
     receivers:
       otlp:
         protocols:
-          grpc:
-          http:
+          grpc: {}
+          http: {}
 
     processors:
-      batch:
+      batch: {}
 
     exporters:
-      otlp:
+      otlp/tempo:
         endpoint: "tempo:4317"
         tls:
           insecure: true
@@ -25,4 +25,4 @@ data:
         traces:
           receivers: [otlp]
           processors: [batch]
-          exporters: [otlp]
+          exporters: [otlp/tempo]
