@@ -1,105 +1,65 @@
-# 🔥 Kubernetes + Grafana
-
-This project deploys a **Linux VM Scale Set** on Azure with full monitoring and a reverse-proxied **Flame dashboard** front-end. It's designed to show production-grade telemetry.
-
----
-
 ![UI](/screenshots/Flame_port.png)
 ![dashboard](/screenshots/azure_dashboard_flame.png)
-## 🧱 Architecture Overview
+# AKS Microservices Observability Demo
 
-- **VMSS** (Virtual Machine Scale Set)  
-  Auto-scaling enabled based on CPU usage.
+Production-grade Kubernetes deployment of Google's Online Boutique microservices demo on Azure AKS with a full observability stack.
 
-- **Monitoring Stack:**
-  - **Azure Monitor Agent (AMA)**
-  - **Data Sources**:
-    - Performance metrics (CPU, memory, disk)
-    - Syslog events
-    - AzureDiagnostics logs
-  - **Data Sink**: Log Analytics Workspace
+## Features
 
-- **Frontend:**
-  - [Flame](https://github.com/pawelmalak/flame) dashboard
-  - Running on port 5005
-  - **NGINX** reverse proxy forwards root (port 80) to Flame to avoid port clutter
+- **Custom Helm Deployment**: Reverse-engineered Online Boutique with no official Helm charts
+- **Prometheus & Grafana**: Metrics collection and dashboards
+- **Tempo with OpenTelemetry**: Distributed tracing operational on frontend service
+- **Loki (Partial)**: Logging integration underway
+- **Azure VMSS**: Node autoscaling enabled with default settings
+- **Terraform Infrastructure**: Full IaC deployment pipeline
 
----
+## Architecture Overview
 
-## 📊 Azure Monitor Dashboard
+|    Component     |      Technology         |
+|------------------|-------------------------|
+| Kubernetes       | Azure AKS               |
+| Infrastructure   | Terraform               |
+| Observability    | Prometheus, Grafana     |
+| Distributed Tracing | OpenTelemetry, Tempo |
+| Logging          | Loki                    |
+| Microservices    | Google Online Boutique  |
 
-Monitoring is visualized through a custom Azure Dashboard:
+## Notable Accomplishments
 
-- VM-level performance: CPU, memory, disk
-- Syslog + NSG log count
-- Auth failures (security insight)
-- Agent uptime and VM instance count
+- Helmified Online Boutique manually (no official Helm charts available)
+- Extracted and implemented hidden environment variables for tracing:
+  - `ENABLE_TRACING`
+  - `COLLECTOR_SERVICE_ADDR`
+- Integrated OpenTelemetry to Tempo for distributed tracing
+- Deployed Prometheus and Grafana for resource monitoring
+- Enabled traces on frontend service (ongoing expansion planned)
 
----
+## Known Gaps
 
-## 💻 Flame Dashboard (Frontend)
+- Distributed tracing active only on frontend service
+- Loki integration incomplete
+- No Prometheus alerting rules configured
+- VMSS autoscaling active but unmanaged (default scaling)
 
-NGINX routes root traffic to Flame (no exposed port 5005). Flame UI includes:
+## Next Steps
 
-- Quick access bookmarks
-- Custom app tiles (optional)
-- Live-updating homepage (not real-time metrics)
+- Expand OpenTelemetry instrumentation to all microservices
+- Complete Loki setup for centralized logging
+- Implement robust Prometheus alerting
+- Fine-tune VMSS autoscaling policies
+- Improve production hardening (RBAC, resource limits, network policies)
 
+## Why This Project Stands Out
 
----
-
-## ⚙️ Tech Stack
-
-- Terraform (modular, IaC)
-- Azure (VMSS, Log Analytics, Monitor, Networking)
-- GitHub Actions (CI/CD)
-- NGINX
-- Flame (Docker)
-
----
-
-## ⚠️ Notes
-
-- Auto-scaling works.
-- Monitoring is real.
-- Alerts work.
+- Real-world troubleshooting experience with incomplete, undocumented systems
+- Debugged misaligned OpenTelemetry, Tempo, and Helm configurations
+- Built observability pipeline from scratch in AKS
+- Simulates production-level challenges with tracing, logging, and metrics
 
 ---
 
-## 🧪 How to Run
-
-1. Clone repo  
-2. Configure Terraform backend and variables
-3. Configure TF_TOKEN_app_terraform_io with your TF Auth Key
-4. Run GitHub Actions (or `terraform apply`)
-5. Access Flame via public IP (HTTP, port 80)
-
+This project demonstrates practical Kubernetes observability skills beyond basic tutorials. Developed to showcase resilience in debugging, reverse engineering, and deploying cloud-native monitoring solutions.
 
 ---
 
-## 📂 Structure
-
-/modules/
-
-vm/
-
-networking/
-
-monitoring/
-
-dcr/
-
-.github/
-
-workflows/
-
-flame/
-
-docker-compose.yml
-
-nginx.conf
-
-main.tf
-
-outputs.tf
-
+*Additional documentation for advanced observability configuration, Helm charts, and alerting setup to follow.*
