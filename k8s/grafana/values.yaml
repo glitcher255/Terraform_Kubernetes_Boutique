@@ -1,0 +1,19 @@
+grafana:
+  adminPassword: "admin123"
+  service:
+    type: LoadBalancer
+
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      access: proxy
+      url: http://loki-gateway
+      isDefault: false
+      editable: true
+
+    - name: Tempo
+      type: tempo
+      access: proxy
+      url: http://tempo:3200
+      isDefault: false
+      editable: true

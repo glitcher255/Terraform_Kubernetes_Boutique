@@ -9,11 +9,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size             = "Standard_B2s"
     auto_scaling_enabled  = true
     min_count           = 1
-    max_count           = 1
+    max_count           = 5
     type                = "VirtualMachineScaleSets"
     vnet_subnet_id = var.subnet_id
-    os_disk_size_gb  = 30
-    #os_sku = "AzureLinux"
+    os_disk_size_gb  = 64
     #os_disk_type = "Ephemeral" #testing only
   }
     identity {

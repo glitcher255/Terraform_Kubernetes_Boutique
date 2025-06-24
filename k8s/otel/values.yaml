@@ -2,7 +2,7 @@ image:
   repository: otel/opentelemetry-collector-contrib
   tag: latest
   pullPolicy: IfNotPresent
-  
+
 mode: deployment
 
 config:
@@ -21,9 +21,18 @@ config:
       tls:
         insecure: true
 
+  extensions:
+    health_check:
+      endpoint: ${env:MY_POD_IP}:13133
+
   service:
+    extensions: [health_check]
     pipelines:
       traces:
         receivers: [otlp]
         processors: [batch]
         exporters: [otlp/tempo]
+
+service:
+  enabled: true
+  type: ClusterIP
