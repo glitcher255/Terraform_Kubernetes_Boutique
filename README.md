@@ -1,65 +1,89 @@
-![UI](/screenshots/Flame_port.png)
-![dashboard](/screenshots/azure_dashboard_flame.png)
-# AKS Microservices Observability Demo
+# 🚀 AKS Microservices Observability Demo
 
-Production-grade Kubernetes deployment of Google's Online Boutique microservices demo on Azure AKS with a full observability stack.
+**Production-grade Kubernetes deployment of Google's Online Boutique microservices demo on Azure AKS with a full observability stack — deployed end-to-end via Terraform.**
 
-## Features
+<p align="center">
+  <img src="/screenshots/boutique_ui.png" alt="Online Boutique UI" width="600"/>
+</p>
 
-- **Custom Helm Deployment**: Reverse-engineered Online Boutique with no official Helm charts
-- **Prometheus & Grafana**: Metrics collection and dashboards
-- **Tempo with OpenTelemetry**: Distributed tracing operational on frontend service
-- **Loki (Partial)**: Logging integration underway
-- **Azure VMSS**: Node autoscaling enabled with default settings
-- **Terraform Infrastructure**: Full IaC deployment pipeline
+---
 
-## Architecture Overview
+## 🌟 Project Highlights
 
-|    Component     |      Technology         |
-|------------------|-------------------------|
-| Kubernetes       | Azure AKS               |
-| Infrastructure   | Terraform               |
-| Observability    | Prometheus, Grafana     |
-| Distributed Tracing | OpenTelemetry, Tempo |
-| Logging          | Loki                    |
-| Microservices    | Google Online Boutique  |
+✅ **One-Command Deployment** — Entire Kubernetes stack deployed with a single `terraform apply`  
+✅ **Helm-Based Installation** — Manually Helmified Online Boutique microservices and observability stack  
+✅ **End-to-End Observability** — Metrics, distributed tracing, and partial logging operational  
+✅ **Real-World Troubleshooting** — Overcame undocumented configs, hidden variables, and Helm challenges  
 
-## Notable Accomplishments
+---
 
-- Helmified Online Boutique manually (no official Helm charts available)
-- Extracted and implemented hidden environment variables for tracing:
+## 📸 Screenshots
+
+| Online Boutique UI                           | Prometheus Metrics                           | OpenTelemetry Traces (Tempo)                |
+|----------------------------------------------|----------------------------------------------|---------------------------------------------|
+| ![UI](/screenshots/boutique_sc1.png)          | ![Prometheus](/screenshots/boutique_sc3.png)   | ![Traces](/screenshots/boutique_sc2.png)     |
+
+---
+
+## 🏗️ Technical Stack
+
+| **Component**         | **Technology**                     |
+|-----------------------|------------------------------------|
+| Infrastructure        | Terraform (Single apply pipeline) |
+| Kubernetes            | Azure AKS with VMSS autoscaling   |
+| Microservices Demo    | Google Online Boutique (manual Helm charts) |
+| Metrics & Dashboards  | Prometheus, Grafana               |
+| Distributed Tracing   | OpenTelemetry, Tempo              |
+| Logging               | Loki (partial integration)        |
+
+---
+
+## 📦 Features
+
+- Manually created Helm charts for Online Boutique (no official charts exist)
+- Extracted hidden environment variables for observability:
   - `ENABLE_TRACING`
   - `COLLECTOR_SERVICE_ADDR`
-- Integrated OpenTelemetry to Tempo for distributed tracing
-- Deployed Prometheus and Grafana for resource monitoring
-- Enabled traces on frontend service (ongoing expansion planned)
-
-## Known Gaps
-
-- Distributed tracing active only on frontend service
-- Loki integration incomplete
-- No Prometheus alerting rules configured
-- VMSS autoscaling active but unmanaged (default scaling)
-
-## Next Steps
-
-- Expand OpenTelemetry instrumentation to all microservices
-- Complete Loki setup for centralized logging
-- Implement robust Prometheus alerting
-- Fine-tune VMSS autoscaling policies
-- Improve production hardening (RBAC, resource limits, network policies)
-
-## Why This Project Stands Out
-
-- Real-world troubleshooting experience with incomplete, undocumented systems
-- Debugged misaligned OpenTelemetry, Tempo, and Helm configurations
-- Built observability pipeline from scratch in AKS
-- Simulates production-level challenges with tracing, logging, and metrics
+- OpenTelemetry traces operational on frontend service via Tempo
+- Prometheus and Grafana deployed for cluster and service monitoring
+- Terraform provisions:
+  - AKS Cluster with default VMSS autoscaling
+  - Kubernetes resources
+  - Helm releases for all services and observability stack
 
 ---
 
-This project demonstrates practical Kubernetes observability skills beyond basic tutorials. Developed to showcase resilience in debugging, reverse engineering, and deploying cloud-native monitoring solutions.
+## ⚙️ Known Gaps
+
+⚠️ Distributed tracing limited to frontend (expansion planned)  
+⚠️ Loki logging stack incomplete  
+⚠️ No Prometheus alert rules configured yet  
+⚠️ VMSS autoscaling enabled but not tuned  
 
 ---
 
-*Additional documentation for advanced observability configuration, Helm charts, and alerting setup to follow.*
+## 🚧 Next Steps
+
+- Extend OpenTelemetry instrumentation across all microservices  
+- Finalize Loki logging integration  
+- Implement production-grade Prometheus alerting  
+- Fine-tune VMSS autoscaling policies  
+- Enhance AKS security: RBAC, resource limits, network policies  
+
+---
+
+## 🎯 Why This Project Stands Out
+
+- Practical experience reverse-engineering real-world microservices without documentation  
+- Overcame Helm and OpenTelemetry misconfigurations in a complex AKS environment  
+- Built an observability stack from scratch simulating production-level challenges  
+- Demonstrates expertise in Kubernetes, Helm, Terraform, and observability tooling  
+
+---
+
+## 📝 Quick Start
+
+```bash
+# Deploy entire infrastructure, microservices, and observability stack
+terraform init
+terraform apply -auto-approve
