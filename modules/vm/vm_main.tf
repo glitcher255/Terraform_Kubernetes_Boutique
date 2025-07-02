@@ -5,15 +5,15 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dns_prefix          = "myaks"
 
   default_node_pool {
-    name                = "default"
-    vm_size             = "Standard_B2s"
+    name                  = "default"
+    vm_size               = "Standard_B2s"
     auto_scaling_enabled  = true
-    min_count           = 1
-    max_count           = 5
-    type                = "VirtualMachineScaleSets"
-    vnet_subnet_id = var.subnet_id
-    os_disk_size_gb  = 64
-    #os_disk_type = "Ephemeral" #testing only
+    min_count             = 2
+    max_count             = 3
+    type                  = "VirtualMachineScaleSets"
+    vnet_subnet_id        = var.subnet_id
+    os_disk_size_gb       = 64
+    #os_disk_type = "Ephemeral" #testing only (not with b2s)
   }
     identity {
     type = "SystemAssigned"

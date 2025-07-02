@@ -35,10 +35,13 @@ spec:
         env:
         - name: REDIS_ADDR
           value: "redis-cart:6379"
-        - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "http://otel-collector:4317"
+          
+        - name: COLLECTOR_SERVICE_ADDR
+          value: "otel-collector-opentelemetry-collector:4317"
         - name: OTEL_EXPORTER_OTLP_INSECURE
           value: "true"
+        - name: ENABLE_TRACING
+          value: "1"
         resources:
           requests:
             cpu: 200m

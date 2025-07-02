@@ -41,6 +41,14 @@ spec:
           value: "http://otel-collector:4317"
         - name: OTEL_EXPORTER_OTLP_INSECURE
           value: "true"
+
+
+        # - name: COLLECTOR_SERVICE_ADDR
+        #   value: "otel-collector-opentelemetry-collector:4317"
+        # - name: OTEL_EXPORTER_OTLP_INSECURE
+        #   value: "true"
+        # - name: ENABLE_TRACING
+        #   value: "1"
         readinessProbe:
           grpc:
             port: 50051

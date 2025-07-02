@@ -6,30 +6,25 @@
 # helm repo update
 
 # kubectl create ns monitoring
-# kubectl create ns boutique
+# #kubectl create ns boutique
 
-# helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring --set grafana.adminPassword='admin123' `
-#   --set grafana.service.type=LoadBalancer `
-# #  --set prometheus.service.type=LoadBalancer
+# helm upgrade --install tempo grafana/tempo -n monitoring -f k8s/tempo/values.yaml
 
-# helm install loki grafana/loki -n monitoring -f k8s/loki/values.yaml
+# helm upgrade --install monitoring prometheus-community/kube-prometheus-stack -n monitoring -f k8s/grafana/values.yaml
 
-# helm install tempo grafana/tempo -n monitoring -f k8s/tempo/values.yaml
+# helm upgrade --install loki grafana/loki -n monitoring -f k8s/loki/values.yaml
 
-# helm install otel-collector open-telemetry/opentelemetry-collector -f k8s/otel/values.yaml
+# helm upgrade --install otel-collector open-telemetry/opentelemetry-collector -n monitoring -f k8s/otel/values.yaml
 
-# cd ../google_boutique/
-# #git clone https://github.com/GoogleCloudPlatform/microservices-demo.git (RUN ONLY ONCE)
-# kubectl apply -f kubernetes-manifests.yaml -n boutique
+
+# cd ../google_boutique
+# #git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
 # cd ../Terraform_Kubernetes_Flame
 
+# cd boutique
+# helm upgrade --install boutique . -n monitoring
+# cd ..
 
-
-# #cd ../google_boutique/microservices-demo/release
-# #kubectl apply -f k8s/otel/otel-collector-config.yaml
-# #kubectl apply -f k8s/otel/otel-collector-deploy.yaml
-# #kubectl apply -f k8s/otel/otel-collector-service.yaml
-# #cd ../../../Terraform_Kubernetes_Flame
 
 
 # ********************
