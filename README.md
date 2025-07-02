@@ -2,9 +2,9 @@
 
 **Production-grade Kubernetes deployment of Google's Online Boutique microservices demo on Azure AKS with a full observability stack — deployed end-to-end via Terraform.**
 
-<!-- <p align="center">
-  <img src="/screenshots/boutique_ui.png" alt="Online Boutique UI" width="600"/>
-</p> -->
+<p align="center">
+  <img src="/screenshots/boutique_sc1.png" alt="Online Boutique UI" width="600"/>
+</p>
 
 ---
 
@@ -44,7 +44,7 @@
 - Extracted hidden environment variables for observability:
   - `ENABLE_TRACING`
   - `COLLECTOR_SERVICE_ADDR`
-- OpenTelemetry traces operational on frontend service via Tempo
+- OpenTelemetry traces operational on all supported services via Tempo
 - Prometheus and Grafana deployed for cluster and service monitoring
 - Terraform provisions:
   - AKS Cluster with default VMSS autoscaling
@@ -54,20 +54,16 @@
 ---
 
 ## ⚙️ Known Gaps
-
-⚠️ Distributed tracing limited to frontend (expansion planned)  
+  
 ⚠️ Loki logging stack incomplete  
-⚠️ No Prometheus alert rules configured yet  
-⚠️ VMSS autoscaling enabled but not tuned  
+⚠️ No Prometheus alert rules configured yet
 
 ---
 
 ## 🚧 Next Steps
 
-- Extend OpenTelemetry instrumentation across all microservices  
 - Finalize Loki logging integration  
 - Implement production-grade Prometheus alerting  
-- Fine-tune VMSS autoscaling policies  
 - Enhance AKS security: RBAC, resource limits, network policies  
 
 ---
