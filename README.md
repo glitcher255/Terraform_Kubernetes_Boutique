@@ -2,9 +2,9 @@
 
 **Production-grade Kubernetes deployment of Google's Online Boutique microservices demo on Azure AKS with a full observability stack — deployed end-to-end via Terraform.**
 
-<p align="center">
+<!-- <p align="center">
   <img src="/screenshots/boutique_ui.png" alt="Online Boutique UI" width="600"/>
-</p>
+</p> -->
 
 ---
 
