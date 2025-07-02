@@ -21,7 +21,7 @@
 
 | Online Boutique UI                           | Prometheus Metrics                           | OpenTelemetry Traces (Tempo)                |
 |----------------------------------------------|----------------------------------------------|---------------------------------------------|
-| ![UI](/screenshots/boutique_sc1.png)          | ![Prometheus](/screenshots/boutique_sc3.png)   | ![Traces](/screenshots/boutique_sc2.png)     |
+| ![UI](/screenshots/boutique_sc1.png)          | ![Prometheus](/screenshots/boutique_sc3.png)   | ![Traces](/screenshots/boutique_sc2.png) |
 
 ---
 
